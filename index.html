@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary SEO Metadata -->
+    <title>DJC Developer - Divya Jyoti Chaudhary | Full-Stack Web Developer</title>
+    <meta name="title" content="DJC Developer - Divya Jyoti Chaudhary | Full-Stack Web Developer" />
+    <meta name="description" content="Pixel-perfect personal portfolio website for Divya Jyoti Chaudhary, Freelance Full-Stack Web Developer from Nepal. Specializing in modern frontend, PHP backend, and high-performance websites." />
+    <meta name="keywords" content="Divya Jyoti Chaudhary, DJC Developer, Full-Stack Developer Nepal, Freelance Web Developer, PHP Developer, Frontend Developer, Saptari Nepal" />
+    <meta name="author" content="Divya Jyoti Chaudhary" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://djc.com.np/" />
+    <meta property="og:title" content="DJC Developer - Divya Jyoti Chaudhary | Full-Stack Web Developer" />
+    <meta property="og:description" content="I create fast, responsive and user-friendly websites that grow your business. Freelance Full-Stack Developer from Nepal." />
+    <meta property="og:image" content="/assets/images/hero-developer.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DJC Developer - Divya Jyoti Chaudhary" />
+    <meta name="twitter:description" content="Freelance Full-Stack Web Developer from Nepal." />
+    <meta name="twitter:image" content="/assets/images/hero-developer.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/images/logo.png" />
+
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <!-- Theme Initialization (Prevents FOUC) -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('djc_theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = saved || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+
+    <!-- =======================================================================
+         1. Header & Navigation
+         ======================================================================= -->
+    <header class="header">
+      <div class="container nav-container">
+        <!-- Brand Logo -->
+        <a href="#home" class="brand-logo" aria-label="DJC Developer Home">
+          <img src="./assets/images/logo.png" alt="DJC Developer Logo" class="logo-icon-svg" />
+          <div class="brand-text">
+            <span class="brand-name">DJC</span>
+            <span class="brand-sub">Developer</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Menu -->
+        <nav class="nav-menu" aria-label="Main Navigation">
+          <a href="#home" class="nav-link active">Home</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#portfolio" class="nav-link">Portfolio</a>
+          <a href="#testimonials" class="nav-link">Testimonials</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+
+        <!-- Right Action Button & Theme Toggle -->
+        <div class="nav-actions">
+          <!-- Light / Dark Theme Toggle Button -->
+          <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light and dark theme" title="Toggle theme">
+            <!-- Sun icon (shown in dark mode) -->
+            <svg class="theme-icon-sun" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <!-- Moon icon (shown in light mode) -->
+            <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <a href="#contact" class="btn btn-primary btn-sm btn-download-cv" id="navDownloadBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Download CV</span>
+          </a>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 0 14px; border-bottom: 1px solid var(--border-card);">
+        <span style="font-weight: 700; color: var(--text-dark); font-size: 0.95rem;">Theme</span>
+        <button class="theme-toggle-btn" id="mobileThemeToggle" aria-label="Toggle light and dark theme">
+          <svg class="theme-icon-sun" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+      <a href="#home" class="mobile-nav-link active">Home</a>
+      <a href="#about" class="mobile-nav-link">About</a>
+      <a href="#services" class="mobile-nav-link">Services</a>
+      <a href="#portfolio" class="mobile-nav-link">Portfolio</a>
+      <a href="#testimonials" class="mobile-nav-link">Testimonials</a>
+      <a href="#contact" class="mobile-nav-link">Contact</a>
+      <button class="btn btn-primary btn-download-cv" style="margin-top: 12px; width: 100%;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>Download CV</span>
+      </button>
+    </div>
+
+    <!-- =======================================================================
+         2. Hero Section
+         ======================================================================= -->
+    <section id="home" class="hero-section">
+      <div class="hero-glow"></div>
+      <div class="container hero-grid">
+        <!-- Hero Text Content -->
+        <div class="hero-content-col">
+          <div class="hero-greeting">
+            Hello, I'm <span class="hero-wave">👋</span>
+          </div>
+          <h1 class="hero-title">
+            Divya Jyoti
+            <span class="name-highlight">Chaudhary</span>
+          </h1>
+          <h3 class="hero-subtitle">Full-Stack Web Developer</h3>
+          <p class="hero-bio">
+            I'm a passionate web developer from Nepal, specializing in modern web technologies. I create fast, responsive and user-friendly websites that grow your business.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#portfolio" class="btn btn-primary">
+              <span>View My Work</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+              <span>Contact Me</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Social Media Icons Row -->
+          <div class="social-icons-list" aria-label="Social media profiles">
+            <!-- Facebook -->
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="Facebook">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <!-- YouTube -->
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="YouTube">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#fff"></polygon>
+              </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="LinkedIn">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <!-- GitHub -->
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="GitHub">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+            </a>
+            <!-- Fiverr / Freelance Brand -->
+            <a href="https://fiverr.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="Fiverr">
+              <span style="font-weight: 800; font-size: 0.95rem; font-style: italic;">fi</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Visual / Developer Illustration -->
+        <div class="hero-visual-wrap">
+          <div class="hero-image-box">
+            <img src="./assets/images/hero-developer.png" alt="Divya Jyoti Chaudhary - Full-Stack Developer" class="hero-main-img" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         3. Services Section ("What I Do")
+         ======================================================================= -->
+    <section id="services" class="services-section">
+      <div class="container services-layout">
+        <!-- Left Intro -->
+        <div class="services-intro">
+          <div class="section-tag">
+            <span class="section-tag-bar"></span>
+            <span>My Services</span>
+          </div>
+          <h2 class="section-heading">
+            What I <span class="text-purple">Do</span>
+          </h2>
+          <p class="section-subtext">
+            I offer modern web solutions to help you grow online.
+          </p>
+          <a href="#contact" class="btn btn-pill-action">
+            <span>Explore All Services</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Right 4 Service Cards Grid -->
+        <div class="services-cards-grid">
+          <!-- Card 1: Frontend Development -->
+          <div class="service-card">
+            <div class="service-icon-box" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <h3 class="service-card-title">Frontend Development</h3>
+            <p class="service-card-desc">Modern &amp; responsive UI with HTML, CSS, JS</p>
+          </div>
+
+          <!-- Card 2: PHP Backend Development -->
+          <div class="service-card">
+            <div class="service-icon-box" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="6" rx="2"></rect>
+                <rect x="2" y="15" width="20" height="6" rx="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+            </div>
+            <h3 class="service-card-title">PHP Backend Development</h3>
+            <p class="service-card-desc">Secure &amp; scalable backend solutions</p>
+          </div>
+
+          <!-- Card 3: Full-Stack Development -->
+          <div class="service-card">
+            <div class="service-icon-box" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <h3 class="service-card-title">Full-Stack Development</h3>
+            <p class="service-card-desc">End-to-end web applications</p>
+          </div>
+
+          <!-- Card 4: UI/UX Design -->
+          <div class="service-card">
+            <div class="service-icon-box" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m12 19 7-7 3 3-7 7-3-3z"></path>
+                <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                <path d="m2 2 7.586 7.586"></path>
+                <circle cx="11" cy="11" r="2"></circle>
+              </svg>
+            </div>
+            <h3 class="service-card-title">UI/UX Design</h3>
+            <p class="service-card-desc">Creative &amp; user-friendly designs</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         4. Portfolio Section ("Latest Projects")
+         ======================================================================= -->
+    <section id="portfolio" class="portfolio-section">
+      <div class="container">
+        <!-- Header Row -->
+        <div class="portfolio-header-row">
+          <div class="portfolio-title-col">
+            <div class="section-tag">
+              <span class="section-tag-bar"></span>
+              <span>My Portfolio</span>
+            </div>
+            <h2 class="section-heading">
+              Latest <span class="text-purple">Projects</span>
+            </h2>
+            <p class="section-subtext">
+              Explore some of my recent work and creative projects.
+            </p>
+            <a href="#portfolio" class="btn btn-pill-action">
+              <span>View All Projects</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+
+            <!-- Decorative Curved Arrow -->
+            <svg class="portfolio-curved-arrow" viewBox="0 0 100 50" fill="none" stroke="#603df6" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4">
+              <path d="M10,40 C40,45 60,10 90,15"></path>
+              <polyline points="82,9 92,15 88,24"></polyline>
+            </svg>
+          </div>
+
+          <!-- Category Filter Tabs -->
+          <div class="portfolio-filters" role="tablist" aria-label="Project Categories">
+            <button class="filter-btn active" data-filter="all" role="tab">All</button>
+            <button class="filter-btn" data-filter="web-design" role="tab">Web Design</button>
+            <button class="filter-btn" data-filter="web-development" role="tab">Web Development</button>
+            <button class="filter-btn" data-filter="ui-ux" role="tab">UI/UX</button>
+            <button class="filter-btn" data-filter="php-projects" role="tab">PHP Projects</button>
+          </div>
+        </div>
+
+        <!-- 3 Project Cards Grid -->
+        <div class="projects-grid">
+          <!-- Project 1: Aagaman Hotel & Party Palace -->
+          <article class="project-card" data-project-id="1" data-category="web-development web-design" tabindex="0">
+            <div class="project-thumb-wrap">
+              <img src="./assets/images/project-1.jpg" alt="Aagaman Hotel &amp; Party Palace" class="project-img" loading="lazy" />
+            </div>
+            <div class="project-content">
+              <div class="project-info">
+                <h3 class="project-name">Aagaman Hotel &amp; Party Palace</h3>
+                <span class="project-category">Hotel Website</span>
+              </div>
+              <div class="project-action-btn" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Zam Zam Lahan -->
+          <article class="project-card" data-project-id="2" data-category="web-development php-projects" tabindex="0">
+            <div class="project-thumb-wrap">
+              <img src="./assets/images/project-2.jpg" alt="Zam Zam Lahan" class="project-img" loading="lazy" />
+            </div>
+            <div class="project-content">
+              <div class="project-info">
+                <h3 class="project-name">Zam Zam Lahan</h3>
+                <span class="project-category">Electronics Store</span>
+              </div>
+              <div class="project-action-btn" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Cafe & Restaurant -->
+          <article class="project-card" data-project-id="3" data-category="ui-ux web-design" tabindex="0">
+            <div class="project-thumb-wrap">
+              <img src="./assets/images/project-3.jpg" alt="Cafe &amp; Restaurant" class="project-img" loading="lazy" />
+            </div>
+            <div class="project-content">
+              <div class="project-info">
+                <h3 class="project-name">Cafe &amp; Restaurant</h3>
+                <span class="project-category">Food &amp; Beverage</span>
+              </div>
+              <div class="project-action-btn" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         5. About Me Section & Statistics
+         ======================================================================= -->
+    <section id="about" class="about-section">
+      <div class="container about-grid">
+        <!-- Left: Developer Graphic -->
+        <div class="about-visual-col">
+          <div class="about-img-box">
+            <img src="./assets/images/about-developer.png" alt="Divya Jyoti Chaudhary Profile" class="about-main-img" />
+          </div>
+        </div>
+
+        <!-- Center: Who Am I? Content -->
+        <div class="about-info-col">
+          <div class="section-tag">
+            <span class="section-tag-bar"></span>
+            <span>About Me</span>
+          </div>
+          <h2 class="about-title">Who Am I?</h2>
+          <p class="about-desc">
+            I'm <strong>Divya Jyoti Chaudhary</strong>, a freelance <strong>Full-Stack Web Developer</strong> from <strong>Nepal</strong>. I love turning ideas into functional and beautiful websites. With a strong passion for technology, I'm always learning and exploring new tools.
+          </p>
+          <a href="#contact" class="btn btn-pill-action">
+            <span>Learn More</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Right: 3-Column Statistics Card -->
+        <div class="stats-card-col">
+          <div class="stats-card">
+            <!-- Stat 1: Years Experience -->
+            <div class="stat-item">
+              <div class="stat-icon" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </div>
+              <div class="stat-number" data-target="1" data-suffix="+">1+</div>
+              <div class="stat-label">Years<br />Experience</div>
+            </div>
+
+            <!-- Stat 2: Projects Completed -->
+            <div class="stat-item">
+              <div class="stat-icon" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                  <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                  <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                </svg>
+              </div>
+              <div class="stat-number" data-target="10" data-suffix="+">10+</div>
+              <div class="stat-label">Projects<br />Completed</div>
+            </div>
+
+            <!-- Stat 3: Client Satisfaction -->
+            <div class="stat-item">
+              <div class="stat-icon" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                  <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                  <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                </svg>
+              </div>
+              <div class="stat-number" data-target="100" data-suffix="%">100%</div>
+              <div class="stat-label">Client<br />Satisfaction</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         6. Testimonials Section ("What Clients Say")
+         ======================================================================= -->
+    <section id="testimonials" class="testimonials-section">
+      <div class="container testimonials-grid">
+        <!-- Left Intro & Controls -->
+        <div class="testimonials-intro">
+          <div class="section-tag">
+            <span class="section-tag-bar"></span>
+            <span>Testimonials</span>
+          </div>
+          <h2 class="section-heading">
+            What Clients <span class="text-purple">Say</span>
+          </h2>
+          <p class="section-subtext">
+            Trusted by clients around the world.
+          </p>
+
+          <!-- Slider Controls -->
+          <div class="testimonial-nav-btns">
+            <button class="nav-arrow-btn" id="prevTestimonial" aria-label="Previous Testimonial">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+            </button>
+            <button class="nav-arrow-btn" id="nextTestimonial" aria-label="Next Testimonial">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right 2 Testimonial Cards Carousel -->
+        <div class="testimonials-cards-wrap" id="testimonialsCardsWrap">
+          <!-- Card 1: Sarah Johnson -->
+          <div class="testimonial-card">
+            <img src="./assets/images/testimonial-1.jpg" alt="Sarah Johnson" class="testimonial-avatar" loading="lazy" />
+            <div class="testimonial-body">
+              <p class="testimonial-quote">
+                “Divya delivered an amazing website with great design and excellent support. Highly recommended!”
+              </p>
+              <div class="testimonial-author-row">
+                <div>
+                  <h4 class="testimonial-name">Sarah Johnson</h4>
+                  <p class="testimonial-title">Business Owner, USA</p>
+                </div>
+                <div class="star-rating" aria-label="5 stars">
+                  ★★★★★
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Rajesh Kumar -->
+          <div class="testimonial-card">
+            <img src="./assets/images/testimonial-2.jpg" alt="Rajesh Kumar" class="testimonial-avatar" loading="lazy" />
+            <div class="testimonial-body">
+              <p class="testimonial-quote">
+                “Professional, creative and very reliable. The communication was outstanding!”
+              </p>
+              <div class="testimonial-author-row">
+                <div>
+                  <h4 class="testimonial-name">Rajesh Kumar</h4>
+                  <p class="testimonial-title">Entrepreneur, Nepal</p>
+                </div>
+                <div class="star-rating" aria-label="5 stars">
+                  ★★★★★
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         7. Contact Section ("Let's Work Together")
+         ======================================================================= -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <!-- Header Tag & Title -->
+        <div style="margin-bottom: 32px;">
+          <div class="section-tag">
+            <span class="section-tag-bar"></span>
+            <span>Get In Touch</span>
+          </div>
+          <h2 class="section-heading">
+            Let's Work <span class="text-purple">Together</span>
+          </h2>
+        </div>
+
+        <!-- 3-Column Layout: Info | Form | 3D Illustration -->
+        <div class="contact-layout">
+          <!-- Left: Contact Details -->
+          <div class="contact-info-col">
+            <p class="section-subtext">
+              Have a project in mind? Feel free to reach out. I'd love to hear from you!
+            </p>
+
+            <div class="contact-items-list">
+              <div class="contact-item-row">
+                <div class="contact-icon-bubble" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </div>
+                <a href="mailto:hello@djc.com.np">hello@djc.com.np</a>
+              </div>
+
+              <div class="contact-item-row">
+                <div class="contact-icon-bubble" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </div>
+                <a href="tel:+9779812345678">+977-9812345678</a>
+              </div>
+
+              <div class="contact-item-row">
+                <div class="contact-icon-bubble" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <span>Saptari, Nepal</span>
+              </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="social-icons-list">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="Facebook">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="YouTube">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#fff"></polygon>
+                </svg>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="LinkedIn">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="GitHub">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+              </a>
+              <a href="https://fiverr.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="Fiverr">
+                <span style="font-weight: 800; font-size: 0.95rem; font-style: italic;">fi</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Center: Form Inputs -->
+          <div class="contact-form-wrap">
+            <form id="contactForm" class="contact-form" novalidate>
+              <div class="form-row-2col">
+                <input type="text" id="userName" class="form-control" placeholder="Your Name" required />
+                <input type="email" id="userEmail" class="form-control" placeholder="Your Email" required />
+              </div>
+
+              <select id="userService" class="form-control form-select">
+                <option value="" selected disabled>Select Service</option>
+                <option value="frontend">Frontend Development</option>
+                <option value="php">PHP Backend Development</option>
+                <option value="fullstack">Full-Stack Development</option>
+                <option value="uiux">UI/UX Design</option>
+                <option value="consultation">Web Consulting &amp; Optimization</option>
+              </select>
+
+              <textarea id="userMessage" class="form-control" placeholder="Your Message" rows="4" required></textarea>
+
+              <button type="submit" id="submitBtn" class="btn-submit-contact">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+                <span>Send Message</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Right: Visual Graphic Illustration -->
+          <div class="contact-visual-col">
+            <div class="contact-img-box">
+              <img src="./assets/images/contact-illustration.png" alt="Build Something Amazing Together" class="contact-main-img" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         8. Footer
+         ======================================================================= -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top-grid">
+          <!-- Col 1: Brand & Tagline -->
+          <div class="footer-brand">
+            <a href="#home" class="brand-logo" style="margin-bottom: 8px;">
+              <img src="./assets/images/logo.png" alt="DJC Developer" class="logo-icon-svg" />
+              <div class="brand-text">
+                <span class="brand-name">DJC</span>
+                <span class="brand-sub">Developer</span>
+              </div>
+            </a>
+            <p class="footer-tagline">Code • Design • Inspire</p>
+          </div>
+
+          <!-- Col 2: Quick Links -->
+          <div class="footer-links-col">
+            <h4 class="footer-col-title">Quick Links</h4>
+            <ul class="footer-links-list">
+              <li class="footer-link-item"><a href="#home"><span>→</span> Home</a></li>
+              <li class="footer-link-item"><a href="#about"><span>→</span> About</a></li>
+              <li class="footer-link-item"><a href="#services"><span>→</span> Services</a></li>
+              <li class="footer-link-item"><a href="#portfolio"><span>→</span> Portfolio</a></li>
+              <li class="footer-link-item"><a href="#contact"><span>→</span> Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Follow Me -->
+          <div class="footer-social-col">
+            <h4 class="footer-col-title">Follow Me</h4>
+            <div class="footer-socials">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Facebook">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="YouTube">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#fff"></polygon>
+                </svg>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="GitHub">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+              </a>
+              <a href="https://fiverr.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Fiverr">
+                <span style="font-weight: 800; font-size: 0.95rem; font-style: italic;">fi</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Bottom Bar -->
+        <div class="footer-bottom">
+          <p>© 2025 <strong>Divya Jyoti Chaudhary</strong>. All rights reserved.</p>
+          <p>Made with ❤️ in Nepal.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =======================================================================
+         9. Interactive Modals & Toast Notices
+         ======================================================================= -->
+    <!-- Project Details Modal -->
+    <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-card">
+        <button class="modal-close-btn" id="modalClose" aria-label="Close project modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <div id="modalBody">
+          <!-- Dynamic Content Injected via script.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-notice" id="toastNotice" role="status" aria-live="polite">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#603df6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+      </svg>
+      <span class="toast-msg">Notification message</span>
+    </div>
+
+    <!-- Vanilla JavaScript -->
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>
