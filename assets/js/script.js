@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 6. Project Modal Preview
+  // 6. Project Modal Preview & Workflow Timeline
   // =========================================================================
   const projectDetails = {
     '1': {
@@ -250,6 +250,32 @@ document.addEventListener('DOMContentLoaded', () => {
       description:
         'A comprehensive hotel booking and banquet reservation web portal designed for Aagaman Hotel & Party Palace. Features an interactive room showcase, online reservation inquiries, dining menus, and an administrative panel for event bookings.',
       tech: ['HTML5', 'CSS3', 'JavaScript', 'PHP Backend', 'MySQL'],
+      timeline: [
+        {
+          phase: '01. Discovery & Architecture',
+          duration: 'Week 1',
+          summary:
+            'Mapped room tiers, party palace capacity packages, and online reservation inquiry flows with the hospitality team.',
+        },
+        {
+          phase: '02. UI/UX Design & Prototyping',
+          duration: 'Week 2',
+          summary:
+            'Crafted a welcoming visual hierarchy, responsive photo galleries, and streamlined booking form wireframes.',
+        },
+        {
+          phase: '03. Full-Stack & PHP Development',
+          duration: 'Weeks 3–4',
+          summary:
+            'Built the interactive frontend, PHP reservation handler, MySQL event booking database, and admin dashboard.',
+        },
+        {
+          phase: '04. QA Testing & Deployment',
+          duration: 'Week 5',
+          summary:
+            'Tested cross-browser responsiveness, optimized media assets for fast loading, and launched on cPanel hosting.',
+        },
+      ],
       client: 'Aagaman Hospitality Group, Nepal',
       link: 'https://djc.com.np/projects/aagaman',
     },
@@ -260,6 +286,32 @@ document.addEventListener('DOMContentLoaded', () => {
       description:
         'An elegant product catalogue and customer inquiry website for Zam Zam Lahan, a premier electronics and consumer appliance retailer. Includes product search, category browsing, warranty inquiry form, and WhatsApp direct ordering.',
       tech: ['HTML5', 'Modern CSS', 'JavaScript ES6', 'PHP', 'Bootstrap Grid'],
+      timeline: [
+        {
+          phase: '01. Catalog Audit & Planning',
+          duration: 'Week 1',
+          summary:
+            'Structured electronics and appliance categories, brand groupings, and warranty support inquiry requirements.',
+        },
+        {
+          phase: '02. Storefront UI/UX Design',
+          duration: 'Week 2',
+          summary:
+            'Designed high-contrast product showcase cards, instant category filtering, and mobile-first browsing layouts.',
+        },
+        {
+          phase: '03. PHP Backend & WhatsApp Ordering',
+          duration: 'Weeks 3–4',
+          summary:
+            'Implemented dynamic PHP product listings, search functionality, and direct WhatsApp order routing.',
+        },
+        {
+          phase: '04. Optimization & Launch',
+          duration: 'Week 5',
+          summary:
+            'Compressed product photography, verified inquiry validation, and deployed the live retail storefront.',
+        },
+      ],
       client: 'Zam Zam Electronics, Lahan, Nepal',
       link: 'https://djc.com.np/projects/zamzam',
     },
@@ -270,6 +322,32 @@ document.addEventListener('DOMContentLoaded', () => {
       description:
         'A warm, appetizing website and digital table menu for a boutique cafe & restaurant. Features an interactive food menu with dietary filters, table reservation module, customer reviews, and Google Maps integration.',
       tech: ['HTML5', 'CSS Animations', 'Vanilla JS', 'Responsive UI/UX'],
+      timeline: [
+        {
+          phase: '01. Brand Mood & Menu Strategy',
+          duration: 'Days 1–3',
+          summary:
+            'Established a warm dining palette and organized food, beverage, and dietary preference categories.',
+        },
+        {
+          phase: '02. Interactive Menu Design',
+          duration: 'Days 4–8',
+          summary:
+            'Designed scannable digital menu cards, table reservation flows, and atmospheric interior gallery layouts.',
+        },
+        {
+          phase: '03. Frontend & Motion Build',
+          duration: 'Days 9–13',
+          summary:
+            'Engineered smooth CSS transitions, Vanilla JS menu filters, reservation validation, and map integration.',
+        },
+        {
+          phase: '04. Mobile QA & Handover',
+          duration: 'Days 14–16',
+          summary:
+            'Validated QR table-menu usability on mobile viewports and delivered clean, maintainable source files.',
+        },
+      ],
       client: 'Heritage Cafe & Restaurant',
       link: 'https://djc.com.np/projects/cafe',
     },
@@ -283,35 +361,49 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = projectDetails[projectId];
     if (!data || !modal || !modalBody) return;
 
+    const timelineMarkup = (data.timeline || [])
+      .map(
+        (step) => `
+        <li class="timeline-step">
+          <div class="timeline-step-header">
+            <span class="timeline-phase-title">${step.phase}</span>
+            <span class="timeline-phase-duration">${step.duration}</span>
+          </div>
+          <p class="timeline-phase-desc">${step.summary}</p>
+        </li>
+      `
+      )
+      .join('');
+
     modalBody.innerHTML = `
-      <div style="margin-bottom: 20px;">
-        <img src="${data.image}" alt="${data.title}" style="width: 100%; border-radius: 16px; aspect-ratio: 16/9; object-fit: cover; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+      <div class="modal-project-thumb">
+        <img src="${data.image}" alt="${data.title}">
       </div>
-      <div style="display: inline-block; padding: 4px 14px; background: #f1eeff; color: #603df6; border-radius: 9999px; font-size: 0.82rem; font-weight: 700; margin-bottom: 10px;">
-        ${data.category}
-      </div>
-      <h2 style="font-size: 1.6rem; font-weight: 800; color: #0f172a; margin-bottom: 12px; line-height: 1.2;">
-        ${data.title}
-      </h2>
-      <p style="color: #55647e; font-size: 0.95rem; line-height: 1.65; margin-bottom: 20px;">
-        ${data.description}
-      </p>
-      <div style="margin-bottom: 20px;">
-        <h4 style="font-size: 0.9rem; font-weight: 700; color: #0f172a; margin-bottom: 8px;">Technologies Used:</h4>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+      <div class="modal-project-badge">${data.category}</div>
+      <h2 id="modalTitle" class="modal-project-title">${data.title}</h2>
+      <p class="modal-project-desc">${data.description}</p>
+
+      <div class="modal-section-block">
+        <h4 class="modal-section-label">Technologies Used</h4>
+        <div class="modal-tech-list">
           ${data.tech
-            .map(
-              (t) =>
-                `<span style="background: #f4f6fb; color: #0f172a; padding: 6px 14px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; border: 1px solid #e2e8f0;">${t}</span>`
-            )
+            .map((t) => `<span class="modal-tech-chip">${t}</span>`)
             .join('')}
         </div>
       </div>
-      <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 18px; border-top: 1px solid #e8ecf6; flex-wrap: gap: 12px;">
-        <div style="font-size: 0.85rem; color: #828fa6;">
-          Client: <strong style="color: #0f172a;">${data.client}</strong>
+
+      <div class="modal-section-block">
+        <h4 class="modal-section-label">Development Workflow &amp; Timeline</h4>
+        <ol class="modal-timeline">
+          ${timelineMarkup}
+        </ol>
+      </div>
+
+      <div class="modal-project-footer">
+        <div class="modal-client-info">
+          Client: <strong>${data.client}</strong>
         </div>
-        <a href="${data.link}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="display: inline-flex; align-items: center; gap: 6px;">
+        <a href="${data.link}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
           <span>Live Preview</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
         </a>
@@ -332,6 +424,14 @@ document.addEventListener('DOMContentLoaded', () => {
     card.addEventListener('click', () => {
       const id = card.getAttribute('data-project-id');
       if (id) openProjectModal(id);
+    });
+
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const id = card.getAttribute('data-project-id');
+        if (id) openProjectModal(id);
+      }
     });
   });
 
