@@ -696,7 +696,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   const initSectionFadeIn = () => {
     const targetSections = document.querySelectorAll(
-      '#services, #portfolio, #about, #testimonials, #contact'
+      '#services, #portfolio, #about, #experience, #testimonials, #contact'
     );
 
     if (!targetSections.length) return;
