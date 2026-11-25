@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary SEO Metadata -->
+    <title>Tech Blog &amp; Articles | DJC Developer - Divya Jyoti Chaudhary</title>
+    <meta name="title" content="Tech Blog &amp; Articles | DJC Developer - Divya Jyoti Chaudhary" />
+    <meta name="description" content="Technical articles, architecture notes, and web development insights by Divya Jyoti Chaudhary (DJC Developer) covering Frontend, React, Tailwind CSS, PHP, and MySQL." />
+    <meta name="keywords" content="Divya Jyoti Chaudhary Blog, DJC Developer Articles, PHP Tutorial, Frontend Performance, CSS Grid, Tailwind CSS, Web Development Nepal" />
+    <meta name="author" content="Divya Jyoti Chaudhary" />
+    <link rel="canonical" href="https://djc.com.np/blog.html" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content="NP-P2" />
+    <meta name="geo.placename" content="Saptari, Nepal" />
+
+    <!-- Schema.org Blog / TechArticle JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "DJC Developer Tech Blog",
+      "url": "https://djc.com.np/blog.html",
+      "description": "Full-stack web development insights, tutorials, and architecture notes by Divya Jyoti Chaudhary.",
+      "author": {
+        "@type": "Person",
+        "name": "Divya Jyoti Chaudhary",
+        "url": "https://djc.com.np/"
+      }
+    }
+    </script>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://djc.com.np/blog.html" />
+    <meta property="og:title" content="Tech Blog &amp; Articles | DJC Developer - Divya Jyoti Chaudhary" />
+    <meta property="og:description" content="Development insights, architecture notes, and practical web engineering tips by Divya Jyoti Chaudhary." />
+    <meta property="og:image" content="/assets/images/hero-developer.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tech Blog &amp; Articles | DJC Developer" />
+    <meta name="twitter:description" content="Technical articles and full-stack web development insights from Nepal." />
+    <meta name="twitter:image" content="/assets/images/hero-developer.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/images/logo.png" />
+
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <!-- Theme Initialization (Prevents FOUC) -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('djc_theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = saved || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+
+    <!-- =======================================================================
+         1. Header & Navigation
+         ======================================================================= -->
+    <header class="header">
+      <div class="container nav-container">
+        <!-- Brand Logo -->
+        <a href="./index.html" class="brand-logo" aria-label="DJC Developer Home">
+          <img src="./assets/images/logo.png" alt="DJC Developer Logo" class="logo-icon-svg" />
+          <div class="brand-text">
+            <span class="brand-name">DJC</span>
+            <span class="brand-sub">Developer</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Menu -->
+        <nav class="nav-menu" aria-label="Main Navigation">
+          <a href="./index.html#home" class="nav-link">Home</a>
+          <a href="./index.html#about" class="nav-link">About</a>
+          <a href="./index.html#services" class="nav-link">Services</a>
+          <a href="./index.html#portfolio" class="nav-link">Portfolio</a>
+          <a href="./index.html#testimonials" class="nav-link">Testimonials</a>
+          <a href="./blog.html" class="nav-link active" aria-current="page">Blog</a>
+          <a href="./index.html#contact" class="nav-link">Contact</a>
+        </nav>
+
+        <!-- Right Action Button & Theme Toggle -->
+        <div class="nav-actions">
+          <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light and dark theme" title="Toggle theme">
+            <svg class="theme-icon-sun" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <a href="./index.html#contact" class="btn btn-primary btn-sm btn-download-cv" id="navDownloadBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Download CV</span>
+          </a>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 0 14px; border-bottom: 1px solid var(--border-card);">
+        <span style="font-weight: 700; color: var(--text-dark); font-size: 0.95rem;">Theme</span>
+        <button class="theme-toggle-btn" id="mobileThemeToggle" aria-label="Toggle light and dark theme">
+          <svg class="theme-icon-sun" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+      <a href="./index.html#home" class="mobile-nav-link">Home</a>
+      <a href="./index.html#about" class="mobile-nav-link">About</a>
+      <a href="./index.html#services" class="mobile-nav-link">Services</a>
+      <a href="./index.html#portfolio" class="mobile-nav-link">Portfolio</a>
+      <a href="./index.html#testimonials" class="mobile-nav-link">Testimonials</a>
+      <a href="./blog.html" class="mobile-nav-link active" aria-current="page">Blog</a>
+      <a href="./index.html#contact" class="mobile-nav-link">Contact</a>
+      <button class="btn btn-primary btn-download-cv" style="margin-top: 12px; width: 100%;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>Download CV</span>
+      </button>
+    </div>
+
+    <!-- =======================================================================
+         2. Dedicated Blog & Technical Insights Page
+         ======================================================================= -->
+    <main>
+      <section id="blog" class="blog-section blog-page-section">
+        <div class="container">
+          <div class="blog-header">
+            <div class="blog-title-col">
+              <div class="section-tag">
+                <span class="section-tag-bar"></span>
+                <span>Tech Blog</span>
+              </div>
+              <h1 class="section-heading">
+                Latest <span class="text-purple">Articles</span>
+              </h1>
+              <p class="section-subtext">
+                Development insights, architecture notes, and practical web engineering tips.
+              </p>
+            </div>
+
+            <div class="blog-controls">
+              <div class="blog-filters" role="tablist" aria-label="Blog Categories">
+                <button class="blog-filter-btn active" data-blog-filter="all" role="tab">All</button>
+                <button class="blog-filter-btn" data-blog-filter="frontend" role="tab">Frontend</button>
+                <button class="blog-filter-btn" data-blog-filter="backend" role="tab">PHP Backend</button>
+                <button class="blog-filter-btn" data-blog-filter="ui-ux" role="tab">UI/UX &amp; CSS</button>
+              </div>
+
+              <div class="blog-search-wrap">
+                <svg class="blog-search-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input
+                  type="search"
+                  id="blogSearchInput"
+                  class="blog-search-input"
+                  placeholder="Search by title or tag..."
+                  aria-label="Search articles by title or tags"
+                  autocomplete="off"
+                />
+                <button
+                  type="button"
+                  id="blogSearchClear"
+                  class="blog-search-clear"
+                  aria-label="Clear article search"
+                  hidden
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Featured Recent Posts Grid -->
+          <div class="recent-posts-section" id="recentPostsSection">
+            <div class="blog-subhead-row">
+              <h2 class="blog-subhead-title">Recent Posts</h2>
+              <span class="blog-subhead-meta">Featured engineering notes &amp; guides</span>
+            </div>
+
+            <div class="recent-posts-grid">
+              <!-- Featured Lead Recent Post -->
+              <article class="recent-post-card recent-post-card--featured" data-post-id="4">
+                <div class="recent-post-thumb-wrap">
+                  <img
+                    src="./assets/images/blog-whatsapp-commerce.jpg"
+                    alt="Laptop and smartphone arranged on a studio desk showing retail inquiry workflow"
+                    class="recent-post-thumb"
+                    referrerpolicy="no-referrer"
+                    loading="eager"
+                  />
+                  <div class="blog-thumb-fallback" aria-hidden="true">
+                    <span>Frontend Engineering</span>
+                  </div>
+                  <div class="recent-post-thumb-scrim" aria-hidden="true"></div>
+                  <span class="recent-post-readtime" aria-label="Estimated reading time">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span data-readtime-post-id="4">2 min read</span>
+                  </span>
+                </div>
+                <div class="recent-post-body">
+                  <div class="blog-card-meta-line">
+                    <span class="blog-meta-accent">Featured</span>
+                    <span aria-hidden="true">&middot;</span>
+                    <span>Frontend</span>
+                    <span aria-hidden="true">&middot;</span>
+                    <span>Nov 24, 2026</span>
+                  </div>
+                  <h3 class="recent-post-title">
+                    Designing Frictionless WhatsApp Order Workflows for Local Retail
+                  </h3>
+                  <p class="recent-post-excerpt">
+                    How structured product inquiry links and pre-filled message templates turn static retail catalogs into instant, zero-friction conversion channels without heavy checkout stacks.
+                  </p>
+                  <div class="recent-post-footer">
+                    <a href="#blog/whatsapp-order-workflows-local-commerce" class="blog-read-link" data-post-id="4">
+                      <span>Read Full Article</span>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Recent Post 2 -->
+              <article class="recent-post-card" data-post-id="1">
+                <div class="recent-post-thumb-wrap">
+                  <img
+                    src="./assets/images/blog-vanilla-performance.jpg"
+                    alt="Laptop displaying clean frontend HTML and CSS variables code next to a developer notebook"
+                    class="recent-post-thumb"
+                    referrerpolicy="no-referrer"
+                    loading="lazy"
+                  />
+                  <div class="blog-thumb-fallback" aria-hidden="true">
+                    <span>Frontend Architecture</span>
+                  </div>
+                  <div class="recent-post-thumb-scrim" aria-hidden="true"></div>
+                  <span class="recent-post-readtime" aria-label="Estimated reading time">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span data-readtime-post-id="1">2 min read</span>
+                  </span>
+                </div>
+                <div class="recent-post-body">
+                  <div class="blog-card-meta-line">
+                    <span>Frontend</span>
+                    <span aria-hidden="true">&middot;</span>
+                    <span>Nov 18, 2026</span>
+                  </div>
+                  <h3 class="recent-post-title">
+                    Building Fast, Zero-Dependency Interfaces with Vanilla JS &amp; CSS Variables
+                  </h3>
+                  <p class="recent-post-excerpt">
+                    How semantic HTML, custom CSS properties, and IntersectionObserver deliver smooth dark-mode theming and fast loads without heavy runtime bundles.
+                  </p>
+                  <div class="recent-post-footer">
+                    <a href="#blog/zero-dependency-interfaces" class="blog-read-link" data-post-id="1">
+                      <span>Read Full Article</span>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Recent Post 3 -->
+              <article class="recent-post-card" data-post-id="2">
+                <div class="recent-post-thumb-wrap">
+                  <img
+                    src="./assets/images/blog-php-security.jpg"
+                    alt="Layered translucent glass database plates and precision metallic security lock"
+                    class="recent-post-thumb"
+                    referrerpolicy="no-referrer"
+                    loading="lazy"
+                  />
+                  <div class="blog-thumb-fallback" aria-hidden="true">
+                    <span>PHP &amp; MySQL Security</span>
+                  </div>
+                  <div class="recent-post-thumb-scrim" aria-hidden="true"></div>
+                  <span class="recent-post-readtime" aria-label="Estimated reading time">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span data-readtime-post-id="2">2 min read</span>
+                  </span>
+                </div>
+                <div class="recent-post-body">
+                  <div class="blog-card-meta-line">
+                    <span>PHP Backend</span>
+                    <span aria-hidden="true">&middot;</span>
+                    <span>Oct 29, 2026</span>
+                  </div>
+                  <h3 class="recent-post-title">
+                    Securing PHP &amp; MySQL Backends for Small Business Web Portals
+                  </h3>
+                  <p class="recent-post-excerpt">
+                    Practical patterns for PDO prepared statements, CSRF token verification, and safe input validation when deploying booking and retail apps on cPanel.
+                  </p>
+                  <div class="recent-post-footer">
+                    <a href="#blog/securing-php-mysql-backends" class="blog-read-link" data-post-id="2">
+                      <span>Read Full Article</span>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Searchable All Articles Grid -->
+          <div class="blog-archive-section">
+            <div class="blog-subhead-row">
+              <h2 class="blog-subhead-title" id="blogArchiveHeading">All Articles</h2>
+              <span class="blog-subhead-meta" id="blogResultsCount">4 articles</span>
+            </div>
+
+            <div class="blog-grid">
+              <!-- Article 4 -->
+              <article class="blog-card" data-post-id="4" data-blog-category="frontend">
+                <div class="blog-card-thumb-wrap">
+                  <img
+                    src="./assets/images/blog-whatsapp-commerce.jpg"
+                    alt="Laptop and smartphone arranged on a studio desk showing retail inquiry workflow"
+                    class="blog-card-thumb"
+                    referrerpolicy="no-referrer"
+                    loading="lazy"
+                  />
+                  <div class="blog-thumb-fallback" aria-hidden="true">
+                    <span>Frontend Engineering</span>
+                  </div>
+                </div>
+                <div class="blog-card-content">
+                  <div class="blog-card-meta-line">
+                    <span class="blog-meta-accent">Frontend</span>
+                    <span aria-hidden="true">&middot;</span>
+                    <span>Nov 2026</span>
+                    <span aria-hidden="true">&middot;</span>
+                    <span data-readtime-post-id="4">2 min read</span>
+                  </div>
+                  <h3 class="blog-card-title">
+                    Designing Frictionless WhatsApp Order Workflows for Local Retail
+                  </h3>
+                  <p class="blog-card-excerpt">
+                    How structured product inquiry links and pre-filled message templates turn static retail catalogs into instant, zero-friction conversion channels.
+                  </p>
+                  <div class="blog-card-tags">
+                    <span class="blog-tag-item">WhatsApp API</span>
+                    <span aria-hidden="true">/</span>
+                    <span class="blog-tag-item">JavaScript ES6</span>
+                    <span aria-hidden="true">/</span>
+                    <span class="blog-tag-item">Conversion UX</span>
+                  </div>
+                  <div class="blog-card-footer">
+                    <a href="#blog/whatsapp-order-workflows-local-commerce" class="blog-read-link" data-post-id="4">
+                      <span>Read Full Article</span>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Article 1 -->
+              <article class="blog-card" data-post-id="1" data-blog-category="frontend">
+                <div class="blog-card-thumb-wrap">
+                  <img
+                    src="./assets/images/blog-vanilla-performance.jpg"
+                    alt="Laptop displaying clean frontend HTML and CSS variables code next to a developer notebook"
+                    class="blog-card-thumb"
+                    referrerpolicy="no-referrer"
+                    loading="lazy"
+                  />
+                  <div class="blog-thumb-fallback" aria-hidden="true">
+                    <span>Frontend Architecture</span>
+                  </div>
+                </div>
+                <div class="blog-card-content">
+                  <div class="blog-card-meta-line">
+                    <span class="blog-meta-accent">Frontend</span>
+                    <span aria-hidden="true">&middot;</span>
+                    <span>Nov 2026</span>
+                    <span aria-hidden="true">&middot;</span>
+                    <span data-readtime-post-id="1">2 min read</span>
+                  </div>
+                  <h3 class="blog-card-title">
+                    Building Fast, Zero-Dependency Interfaces with Vanilla JS &amp; CSS Variables
+                  </h3>
+                  <p class="blog-card-excerpt">
+                    How semantic HTML, custom CSS properties, and IntersectionObserver deliver smooth dark-mode theming and 60fps scroll reveals without heavy runtime bundles.
+                  </p>
+                  <div class="blog-card-tags">
+                    <span class="blog-tag-item">JavaScript ES6</span>
+                    <span aria-hidden="true">/</span>
+                    <span class="blog-tag-item">CSS Variables</span>
+                    <span aria-hidden="true">/</span>
+                    <span class="blog-tag-item">Performance</span>
+                  </div>
+                  <div class="blog-card-footer">
+                    <a href="#blog/zero-dependency-interfaces" class="blog-read-link" data-post-id="1">
+                      <span>Read Full Article</span>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Article 2 -->
+              <article class="blog-card" data-post-id="2" data-blog-category="backend">
+                <div class="blog-card-thumb-wrap">
+                  <img
+                    src="./assets/images/blog-php-security.jpg"
+                    alt="Layered translucent glass database plates and precision metallic security lock"
+                    class="blog-card-thumb"
+                    referrerpolicy="no-referrer"
+                    loading="lazy"
+                  />
+                  <div class="blog-thumb-fallback" aria-hidden="true">
+                    <span>PHP &amp; MySQL Security</span>
+                  </div>
+                </div>
+                <div class="blog-card-content">
+                  <div class="blog-card-meta-line">
+                    <span class="blog-meta-accent">PHP Backend</span>
+                    <span aria-hidden="true">&middot;</span>
+                    <span>Oct 2026</span>
+                    <span aria-hidden="true">&middot;</span>
+                    <span data-readtime-post-id="2">2 min read</span>
+                  </div>
+                  <h3 class="blog-card-title">
+                    Securing PHP &amp; MySQL Backends for Small Business Web Portals
+                  </h3>
+                  <p class="blog-card-excerpt">
+                    Practical patterns for PDO prepared statements, CSRF token verification, and safe input validation when deploying custom booking and retail apps on cPanel.
+                  </p>
+                  <div class="blog-card-tags">
+                    <span class="blog-tag-item">PHP 8</span>
+                    <span aria-hidden="true">/</span>
+                    <span class="blog-tag-item">MySQL PDO</span>
+                    <span aria-hidden="true">/</span>
+                    <span class="blog-tag-item">Security</span>
+                  </div>
+                  <div class="blog-card-footer">
+                    <a href="#blog/securing-php-mysql-backends" class="blog-read-link" data-post-id="2">
+                      <span>Read Full Article</span>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Article 3 -->
+              <article class="blog-card" data-post-id="3" data-blog-category="ui-ux">
+                <div class="blog-card-thumb-wrap">
+                  <img
+                    src="./assets/images/blog-responsive-grids.jpg"
+                    alt="Calibrated studio monitor displaying a modular multi-column layout grid next to paper wireframes"
+                    class="blog-card-thumb"
+                    referrerpolicy="no-referrer"
+                    loading="lazy"
+                  />
+                  <div class="blog-thumb-fallback" aria-hidden="true">
+                    <span>UI/UX &amp; CSS Grid</span>
+                  </div>
+                </div>
+                <div class="blog-card-content">
+                  <div class="blog-card-meta-line">
+                    <span class="blog-meta-accent">UI/UX &amp; CSS</span>
+                    <span aria-hidden="true">&middot;</span>
+                    <span>Sep 2026</span>
+                    <span aria-hidden="true">&middot;</span>
+                    <span data-readtime-post-id="3">2 min read</span>
+                  </div>
+                  <h3 class="blog-card-title">
+                    Designing Accessible Responsive Grids with CSS Grid and Tailwind CSS
+                  </h3>
+                  <p class="blog-card-excerpt">
+                    Tips for structuring multi-breakpoint card grids, maintaining readable line lengths, and handling reduced-motion preferences cleanly across desktop and mobile.
+                  </p>
+                  <div class="blog-card-tags">
+                    <span class="blog-tag-item">CSS Grid</span>
+                    <span aria-hidden="true">/</span>
+                    <span class="blog-tag-item">Tailwind CSS</span>
+                    <span aria-hidden="true">/</span>
+                    <span class="blog-tag-item">Accessibility</span>
+                  </div>
+                  <div class="blog-card-footer">
+                    <a href="#blog/accessible-responsive-grids" class="blog-read-link" data-post-id="3">
+                      <span>Read Full Article</span>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="blog-empty-state" id="blogEmptyState" hidden>
+              <p class="blog-empty-text" id="blogEmptyText">
+                No articles matched your search.
+              </p>
+              <button type="button" class="btn btn-secondary btn-sm" id="blogResetFiltersBtn">
+                Reset Search &amp; Filters
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =======================================================================
+         3. Footer
+         ======================================================================= -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top-grid">
+          <!-- Col 1: Brand & Tagline -->
+          <div class="footer-brand">
+            <a href="./index.html" class="brand-logo" style="margin-bottom: 8px;">
+              <img src="./assets/images/logo.png" alt="DJC Developer" class="logo-icon-svg" />
+              <div class="brand-text">
+                <span class="brand-name">DJC</span>
+                <span class="brand-sub">Developer</span>
+              </div>
+            </a>
+            <p class="footer-tagline">Code • Design • Inspire</p>
+          </div>
+
+          <!-- Col 2: Quick Links -->
+          <div class="footer-links-col">
+            <h4 class="footer-col-title">Quick Links</h4>
+            <ul class="footer-links-list">
+              <li class="footer-link-item"><a href="./index.html#home"><span>→</span> Home</a></li>
+              <li class="footer-link-item"><a href="./index.html#about"><span>→</span> About</a></li>
+              <li class="footer-link-item"><a href="./index.html#services"><span>→</span> Services</a></li>
+              <li class="footer-link-item"><a href="./index.html#portfolio"><span>→</span> Portfolio</a></li>
+              <li class="footer-link-item"><a href="./index.html#testimonials"><span>→</span> Testimonials</a></li>
+              <li class="footer-link-item"><a href="./blog.html"><span>→</span> Blog</a></li>
+              <li class="footer-link-item"><a href="./index.html#contact"><span>→</span> Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Follow Me -->
+          <div class="footer-social-col">
+            <h4 class="footer-col-title">Follow Me</h4>
+            <div class="footer-socials">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Facebook">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="YouTube">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#fff"></polygon>
+                </svg>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="GitHub">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+              </a>
+              <a href="https://fiverr.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Fiverr">
+                <span style="font-weight: 800; font-size: 0.95rem; font-style: italic;">fi</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Bottom Bar -->
+        <div class="footer-bottom">
+          <p>© <span id="currentYear">2026</span> <strong>Divya Jyoti Chaudhary</strong>. All rights reserved.</p>
+          <p>Made with ❤️ in Nepal.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Full Blog Post Reader Modal -->
+    <div class="modal-overlay" id="blogModal" role="dialog" aria-modal="true" aria-labelledby="blogModalTitle">
+      <div class="modal-card blog-modal-card">
+        <button class="modal-close-btn" id="blogModalClose" aria-label="Close article view">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <div id="blogModalBody">
+          <!-- Full Article Content Injected via script.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-notice" id="toastNotice" role="status" aria-live="polite">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#603df6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+      </svg>
+      <span class="toast-msg">Notification message</span>
+    </div>
+
+    <!-- Floating WhatsApp Quick Chat Button -->
+    <a
+      href="https://wa.me/9779812345678?text=Hello%20Divya%2C%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."
+      target="_blank"
+      rel="noopener noreferrer"
+      class="whatsapp-float-btn"
+      data-whatsapp-link="direct"
+      aria-label="Chat with Divya on WhatsApp"
+    >
+      <span class="whatsapp-float-tooltip">Chat on WhatsApp</span>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.15 1.59 5.96L0 24l6.3-1.65a11.86 11.86 0 0 0 5.75 1.47h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.44-8.44zM12.06 21.8h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.84 9.84 0 0 1-1.51-5.27c0-5.45 4.44-9.89 9.9-9.89 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.46-4.44 9.9-9.89 9.9zm5.42-7.41c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.51 0 1.48 1.08 2.91 1.23 3.11.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/>
+      </svg>
+    </a>
+
+    <!-- Vanilla JavaScript -->
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>

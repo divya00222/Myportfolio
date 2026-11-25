@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://djc.com.np/sitemap.xml

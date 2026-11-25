@@ -21,23 +21,25 @@ document.addEventListener('DOMContentLoaded', () => {
       header?.classList.remove('scrolled');
     }
 
-    // Scroll spy for active section link
-    const scrollY = window.pageYOffset;
+    // Scroll spy for active section link (only on multi-section landing page)
+    if (sections.length > 1) {
+      const scrollY = window.pageYOffset;
 
-    sections.forEach((current) => {
-      const sectionHeight = current.offsetHeight;
-      const sectionTop = current.offsetTop - 120;
-      const sectionId = current.getAttribute('id');
+      sections.forEach((current) => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop - 120;
+        const sectionId = current.getAttribute('id');
 
-      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-        navLinks.forEach((link) => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${sectionId}`) {
-            link.classList.add('active');
-          }
-        });
-      }
-    });
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+          navLinks.forEach((link) => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${sectionId}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }
   };
 
   window.addEventListener('scroll', handleScroll, { passive: true });
@@ -115,6 +117,17 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+  // Reset filter when clicking "View All Projects"
+  const viewAllProjectsBtn = document.querySelector('.portfolio-footer-action a');
+  if (viewAllProjectsBtn) {
+    viewAllProjectsBtn.addEventListener('click', () => {
+      const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+      if (allBtn && !allBtn.classList.contains('active')) {
+        allBtn.click();
+      }
+    });
+  }
 
   // =========================================================================
   // 4. Testimonials Slider
@@ -285,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
       image: 'assets/images/project-2.jpg',
       description:
         'An elegant product catalogue and customer inquiry website for Zam Zam Lahan, a premier electronics and consumer appliance retailer. Includes product search, category browsing, warranty inquiry form, and WhatsApp direct ordering.',
-      tech: ['HTML5', 'Modern CSS', 'JavaScript ES6', 'PHP', 'Bootstrap Grid'],
+      tech: ['HTML5', 'CSS3', 'JavaScript ES6', 'PHP', 'MySQL'],
       timeline: [
         {
           phase: '01. Catalog Audit & Planning',
@@ -563,20 +576,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 Email: hello@djc.com.np &bull; Phone: +977-9812345678 &bull; Location: Saptari, Nepal &bull; Portfolio: djc.com.np
               </div>
               <h2>Professional Summary</h2>
-              <p>Passionate Full-Stack Web Developer based in Nepal, specializing in responsive user interfaces, PHP backend development, and complete web applications. Proven track record in delivering high quality, high-converting digital solutions for hotels, retail businesses, and modern enterprises.</p>
+              <p>Passionate Freelance Full-Stack Web Developer based in Nepal, specializing in modern responsive user interfaces, PHP &amp; MySQL backend development, and complete web applications for hospitality, retail, and service businesses.</p>
               <h2>Core Skills</h2>
               <ul>
-                <li><strong>Frontend:</strong> HTML5, CSS3, Vanilla JavaScript (ES6+), Responsive Design, UI/UX Wireframing</li>
+                <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript (ES6+), React, Tailwind CSS, Responsive UI/UX</li>
                 <li><strong>Backend:</strong> PHP, MySQL, RESTful APIs, MVC Architecture</li>
-                <li><strong>Tools & Platforms:</strong> Git, GitHub, cPanel, Apache, Linux Server Management</li>
+                <li><strong>Tools &amp; Platforms:</strong> Git, GitHub, cPanel, Apache, Linux Server Management</li>
               </ul>
               <h2>Featured Projects</h2>
               <ul>
-                <li><strong>Aagaman Hotel & Party Palace:</strong> Full-stack website with banquet booking and room showcase.</li>
-                <li><strong>Zam Zam Lahan:</strong> Electronics retail showcase with WhatsApp order integration.</li>
-                <li><strong>Heritage Cafe & Restaurant:</strong> Interactive digital menu and table reservation portal.</li>
+                <li><strong>Aagaman Hotel &amp; Party Palace:</strong> Full-stack website with banquet booking and room showcase.</li>
+                <li><strong>Zam Zam Lahan:</strong> Electronics retail showcase with search, catalog filtering, and WhatsApp order integration.</li>
+                <li><strong>Heritage Cafe &amp; Restaurant:</strong> Interactive digital menu and table reservation portal.</li>
               </ul>
-              <h2>Experience & Stats</h2>
+              <h2>Experience &amp; Stats (${new Date().getFullYear()})</h2>
               <p>1+ Years Professional Experience &bull; 10+ Successfully Completed Projects &bull; 100% Client Satisfaction</p>
             </body>
             </html>
@@ -589,13 +602,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Dynamic Copyright Year
+  const currentYearEl = document.getElementById('currentYear');
+  if (currentYearEl) {
+    currentYearEl.textContent = String(new Date().getFullYear());
+  }
+
   // =========================================================================
   // 9. Smooth Scroll for Anchor Links
   // =========================================================================
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
-      if (targetId && targetId !== '#') {
+      if (targetId && targetId !== '#' && !targetId.startsWith('#blog/')) {
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
           e.preventDefault();
@@ -718,6 +737,546 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   initSectionFadeIn();
+
+  // =========================================================================
+  // 12. WhatsApp Quick-Chat & Form Integration
+  // =========================================================================
+  const WHATSAPP_NUMBER = '9779812345678';
+  const DEFAULT_WHATSAPP_TEXT =
+    'Hello Divya, I visited your portfolio and would like to discuss a project.';
+
+  const buildWhatsAppUrl = (text) =>
+    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+
+  // Sync direct WhatsApp links (Contact row & floating widget)
+  document.querySelectorAll('[data-whatsapp-link="direct"]').forEach((link) => {
+    link.setAttribute('href', buildWhatsAppUrl(DEFAULT_WHATSAPP_TEXT));
+  });
+
+  // Sync Contact Form "Chat on WhatsApp" button with user's entered details
+  const whatsappFormBtn = document.getElementById('whatsappFormBtn');
+  if (whatsappFormBtn) {
+    const nameField = document.getElementById('userName');
+    const emailField = document.getElementById('userEmail');
+    const serviceField = document.getElementById('userService');
+    const messageField = document.getElementById('userMessage');
+
+    const updateWhatsAppFormHref = () => {
+      const name = nameField?.value.trim() || '';
+      const email = emailField?.value.trim() || '';
+      const serviceOption = serviceField?.options?.[serviceField.selectedIndex];
+      const serviceLabel =
+        serviceField?.value && serviceOption ? serviceOption.text : '';
+      const message = messageField?.value.trim() || '';
+
+      if (!name && !email && !serviceLabel && !message) {
+        whatsappFormBtn.setAttribute(
+          'href',
+          buildWhatsAppUrl(DEFAULT_WHATSAPP_TEXT)
+        );
+        return;
+      }
+
+      const lines = ["Hello Divya, I'd like to discuss a project:"];
+      if (name) lines.push(`Name: ${name}`);
+      if (email) lines.push(`Email: ${email}`);
+      if (serviceLabel) lines.push(`Service: ${serviceLabel}`);
+      if (message) lines.push(`Message: ${message}`);
+
+      whatsappFormBtn.setAttribute('href', buildWhatsAppUrl(lines.join('\n')));
+    };
+
+    [nameField, emailField, serviceField, messageField].forEach((field) => {
+      if (field) {
+        field.addEventListener('input', updateWhatsAppFormHref);
+        field.addEventListener('change', updateWhatsAppFormHref);
+      }
+    });
+
+    whatsappFormBtn.addEventListener('click', () => {
+      updateWhatsAppFormHref();
+      showToast('Opening WhatsApp chat with Divya...');
+    });
+
+    updateWhatsAppFormHref();
+  }
+
+  // =========================================================================
+  // 13. Blog Filtering, Recent Posts & Full Article Reader View
+  // =========================================================================
+  const blogPosts = [
+    {
+      id: '4',
+      slug: 'whatsapp-order-workflows-local-commerce',
+      category: 'Frontend',
+      date: 'November 24, 2026',
+      readTime: '5 min read',
+      author: 'Divya Jyoti Chaudhary',
+      image: './assets/images/blog-whatsapp-commerce.jpg',
+      imageAlt:
+        'Laptop and smartphone arranged on a studio desk showing retail inquiry workflow',
+      title: 'Designing Frictionless WhatsApp Order Workflows for Local Retail',
+      lead:
+        'How structured product inquiry links and pre-filled message templates turn static retail catalogs into instant, zero-friction conversion channels without heavy checkout stacks.',
+      tags: ['WhatsApp API', 'JavaScript ES6', 'Conversion UX'],
+      sections: [
+        {
+          heading: 'Why Direct Chat Outperforms Multi-Step Checkouts Locally',
+          paragraphs: [
+            'For electronics stores, cafes, and banquet venues across Nepal, customers frequently prefer confirming availability, delivery timing, or custom pricing directly on WhatsApp rather than filling out multi-page account registrations.',
+            'By generating URL-encoded wa.me links directly from product cards and contact forms, every inquiry arrives pre-structured with item names, service categories, and customer contact details.',
+          ],
+        },
+        {
+          heading: 'Dynamic Message Composition in Vanilla JS',
+          paragraphs: [
+            'Keeping WhatsApp URLs synchronized as users select a service or type their message ensures both standard anchor links and form-assisted chat buttons work reliably without pop-up blockers.',
+          ],
+          code: `const buildWhatsAppUrl = (phone, fields) => {\n  const lines = ['Hello, I would like to inquire about:'];\n  if (fields.name) lines.push(\`Name: \${fields.name}\`);\n  if (fields.service) lines.push(\`Service: \${fields.service}\`);\n  if (fields.message) lines.push(\`Details: \${fields.message}\`);\n  return \`https://wa.me/\${phone}?text=\${encodeURIComponent(lines.join('\\n'))}\`;\n};`,
+        },
+        {
+          heading: 'Implementation Checklist',
+          bullets: [
+            'Always use standard anchor links with target="_blank" and rel="noopener noreferrer".',
+            'Keep one floating quick-chat trigger clear of toast notifications and mobile drawers.',
+            'Provide a regular email/form submission path alongside WhatsApp for formal proposals.',
+          ],
+        },
+      ],
+    },
+    {
+      id: '1',
+      slug: 'zero-dependency-interfaces',
+      category: 'Frontend',
+      date: 'November 18, 2026',
+      readTime: '5 min read',
+      author: 'Divya Jyoti Chaudhary',
+      image: './assets/images/blog-vanilla-performance.jpg',
+      imageAlt:
+        'Laptop displaying clean frontend HTML and CSS variables code next to a developer notebook',
+      title:
+        'Building Fast, Zero-Dependency Interfaces with Vanilla JS & CSS Variables',
+      lead:
+        'How semantic HTML5, custom CSS properties, and native browser APIs like IntersectionObserver let you ship smooth dark-mode theming and responsive layouts without heavy runtime bundles.',
+      tags: ['JavaScript ES6', 'CSS Variables', 'Performance'],
+      sections: [
+        {
+          heading: 'Why Lean Frontends Matter for Client Hosting',
+          paragraphs: [
+            'Many local businesses and hospitality websites run on standard cPanel or shared Apache hosting where instant Time-to-First-Byte and minimal asset overhead make a tangible difference on 3G/4G mobile connections.',
+            'By leaning on native CSS custom properties for theming and Vanilla ES6+ JavaScript for state transitions, your site avoids hydration delays while keeping the codebase straightforward to maintain.',
+          ],
+        },
+        {
+          heading: 'Theme Switching Without Flash of Unstyled Content',
+          paragraphs: [
+            'A tiny inline script in the document head reads localStorage and falls back to prefers-color-scheme before the first paint, setting a data-theme attribute on the root element.',
+          ],
+          code: `:root {\n  --bg-page: #ffffff;\n  --text-dark: #0f172a;\n  --primary: #603df6;\n}\n\n[data-theme="dark"] {\n  --bg-page: #0b0f19;\n  --text-dark: #f8fafc;\n  --primary: #7c5cff;\n}`,
+        },
+        {
+          heading: 'Key Takeaways',
+          bullets: [
+            'Use CSS variables as your single source of truth for light and dark surfaces.',
+            'Observe scroll reveals with IntersectionObserver and unobserve elements once visible.',
+            'Respect prefers-reduced-motion so animations disable cleanly for sensitive users.',
+          ],
+        },
+      ],
+    },
+    {
+      id: '2',
+      slug: 'securing-php-mysql-backends',
+      category: 'PHP Backend',
+      date: 'October 29, 2026',
+      readTime: '6 min read',
+      author: 'Divya Jyoti Chaudhary',
+      image: './assets/images/blog-php-security.jpg',
+      imageAlt:
+        'Layered translucent glass database plates and precision metallic security lock',
+      title: 'Securing PHP & MySQL Backends for Small Business Web Portals',
+      lead:
+        'Practical security patterns—PDO prepared statements, CSRF tokens, and strict server-side validation—used in hotel reservation portals and retail storefronts.',
+      tags: ['PHP 8', 'MySQL PDO', 'Security'],
+      sections: [
+        {
+          heading: 'Always Parameterize Database Queries with PDO',
+          paragraphs: [
+            'String-concatenated SQL queries remain one of the most common security risks in custom PHP applications. Using PDO with emulated prepares disabled guarantees user input is never interpreted as SQL syntax.',
+          ],
+          code: `$stmt = $pdo->prepare(\n  'INSERT INTO bookings (guest_name, event_date, guests) VALUES (:name, :date, :guests)'\n);\n$stmt->execute([\n  ':name'   => $cleanName,\n  ':date'   => $eventDate,\n  ':guests' => $guestCount,\n]);`,
+        },
+        {
+          heading: 'Defense-in-Depth for Public Forms',
+          paragraphs: [
+            'Client-side validation improves UX, but every reservation, contact, or order endpoint must re-validate formats, enforce rate limits, and escape rendered output with htmlspecialchars().',
+          ],
+          bullets: [
+            'Set PDO::ATTR_EMULATE_PREPARES => false and PDO::ERRMODE_EXCEPTION.',
+            'Verify CSRF tokens on every state-changing POST request.',
+            'Store database credentials outside the public web root or in environment configuration.',
+          ],
+        },
+      ],
+    },
+    {
+      id: '3',
+      slug: 'accessible-responsive-grids',
+      category: 'UI/UX & CSS',
+      date: 'September 14, 2026',
+      readTime: '4 min read',
+      author: 'Divya Jyoti Chaudhary',
+      image: './assets/images/blog-responsive-grids.jpg',
+      imageAlt:
+        'Calibrated studio monitor displaying a modular multi-column layout grid next to paper wireframes',
+      title: 'Designing Accessible Responsive Grids with CSS Grid and Tailwind CSS',
+      lead:
+        'Lessons from structuring multi-column service, portfolio, and article layouts that stay scannable from 320px phones up to 1440px+ desktop monitors.',
+      tags: ['CSS Grid', 'Tailwind CSS', 'Accessibility'],
+      sections: [
+        {
+          heading: 'Predictable Breakpoints & Visual Hierarchy',
+          paragraphs: [
+            'Consistent column tracks—paired two-column grids on desktop and clean single-column stacks on mobile—prevent awkward orphaned cards and eliminate horizontal scrolling.',
+            'Pairing a crisp top-to-bottom section header with balanced card spacing gives visitors clear scanning paths across services, case studies, and blog insights.',
+          ],
+          code: `.blog-grid {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: 24px;\n}\n@media (max-width: 640px) {\n  .blog-grid { grid-template-columns: 1fr; }\n}`,
+        },
+        {
+          heading: 'Keyboard & Screen-Reader Polish',
+          bullets: [
+            'Use real anchor links or buttons for interactive card actions rather than clickable divs alone.',
+            'Maintain sufficient color contrast on muted metadata in both light and dark themes.',
+            'Clear transition-delay on :hover so staggered card entrance delays never lag pointer interactions.',
+          ],
+        },
+      ],
+    },
+  ];
+
+  const calculateReadingTime = (post) => {
+    const WORDS_PER_MINUTE = 200;
+    const textChunks = [post.title, post.lead];
+    let codeBlocksCount = 0;
+
+    (post.sections || []).forEach((sec) => {
+      if (sec.heading) textChunks.push(sec.heading);
+      if (Array.isArray(sec.paragraphs)) {
+        textChunks.push(...sec.paragraphs);
+      }
+      if (Array.isArray(sec.bullets)) {
+        textChunks.push(...sec.bullets);
+      }
+      if (sec.code) {
+        codeBlocksCount += 1;
+      }
+    });
+
+    const wordCount = textChunks
+      .join(' ')
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean).length;
+
+    const totalMinutes = wordCount / WORDS_PER_MINUTE + codeBlocksCount * 0.5;
+    const estimatedMinutes = Math.max(1, Math.ceil(totalMinutes));
+    return `${estimatedMinutes} min read`;
+  };
+
+  blogPosts.forEach((post) => {
+    post.readTime = calculateReadingTime(post);
+  });
+
+  const syncReadingTimes = () => {
+    blogPosts.forEach((post) => {
+      document
+        .querySelectorAll(`[data-readtime-post-id="${post.id}"]`)
+        .forEach((el) => {
+          el.textContent = post.readTime;
+        });
+    });
+  };
+
+  syncReadingTimes();
+
+  const recentPostsSection = document.getElementById('recentPostsSection');
+  const recentPostCards = document.querySelectorAll('.recent-post-card');
+  const blogArchiveHeading = document.getElementById('blogArchiveHeading');
+  const blogResultsCount = document.getElementById('blogResultsCount');
+  const blogFilterBtns = document.querySelectorAll('.blog-filter-btn');
+  const blogCards = document.querySelectorAll('.blog-card');
+  const blogSearchInput = document.getElementById('blogSearchInput');
+  const blogSearchClear = document.getElementById('blogSearchClear');
+  const blogEmptyState = document.getElementById('blogEmptyState');
+  const blogEmptyText = document.getElementById('blogEmptyText');
+  const blogResetFiltersBtn = document.getElementById('blogResetFiltersBtn');
+  const blogModal = document.getElementById('blogModal');
+  const blogModalClose = document.getElementById('blogModalClose');
+  const blogModalBody = document.getElementById('blogModalBody');
+
+  let activeBlogCategory = 'all';
+
+  const attachThumbFallback = (imgEl) => {
+    if (!imgEl) return;
+    imgEl.addEventListener('error', () => {
+      if (imgEl.parentElement) {
+        imgEl.parentElement.classList.add('is-broken');
+      }
+    });
+  };
+
+  document
+    .querySelectorAll('.recent-post-thumb, .blog-card-thumb')
+    .forEach(attachThumbFallback);
+
+  const applyBlogFilters = () => {
+    const rawQuery = blogSearchInput ? blogSearchInput.value.trim() : '';
+    const query = rawQuery.toLowerCase();
+    const isFiltering = activeBlogCategory !== 'all' || rawQuery.length > 0;
+
+    if (blogSearchClear) {
+      blogSearchClear.hidden = rawQuery.length === 0;
+    }
+
+    if (recentPostsSection) {
+      recentPostsSection.hidden = isFiltering;
+    }
+
+    if (blogArchiveHeading) {
+      blogArchiveHeading.textContent = isFiltering ? 'Matching Articles' : 'All Articles';
+    }
+
+    let visibleCount = 0;
+
+    blogCards.forEach((card) => {
+      const cardCat = card.getAttribute('data-blog-category') || '';
+      const categoryMatches =
+        activeBlogCategory === 'all' || cardCat === activeBlogCategory;
+
+      const titleText =
+        card.querySelector('.blog-card-title')?.textContent?.toLowerCase() || '';
+      const tagsText = Array.from(
+        card.querySelectorAll('.blog-tag-item, .blog-tag-chip')
+      )
+        .map((chip) => chip.textContent?.toLowerCase() || '')
+        .join(' ');
+
+      const queryMatches =
+        !query || titleText.includes(query) || tagsText.includes(query);
+
+      if (categoryMatches && queryMatches) {
+        card.style.display = 'flex';
+        visibleCount += 1;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (blogResultsCount) {
+      blogResultsCount.textContent =
+        visibleCount === 1 ? '1 article' : `${visibleCount} articles`;
+    }
+
+    if (blogEmptyState) {
+      blogEmptyState.hidden = visibleCount > 0;
+      if (visibleCount === 0 && blogEmptyText) {
+        blogEmptyText.textContent = rawQuery
+          ? `No articles found matching "${rawQuery}".`
+          : 'No articles found in this category.';
+      }
+    }
+  };
+
+  blogFilterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      blogFilterBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeBlogCategory = btn.getAttribute('data-blog-filter') || 'all';
+      applyBlogFilters();
+    });
+  });
+
+  if (blogSearchInput) {
+    blogSearchInput.addEventListener('input', applyBlogFilters);
+  }
+
+  if (blogSearchClear && blogSearchInput) {
+    blogSearchClear.addEventListener('click', () => {
+      blogSearchInput.value = '';
+      applyBlogFilters();
+      blogSearchInput.focus();
+    });
+  }
+
+  if (blogResetFiltersBtn) {
+    blogResetFiltersBtn.addEventListener('click', () => {
+      if (blogSearchInput) blogSearchInput.value = '';
+      activeBlogCategory = 'all';
+      blogFilterBtns.forEach((b) => {
+        b.classList.toggle('active', b.getAttribute('data-blog-filter') === 'all');
+      });
+      applyBlogFilters();
+    });
+  }
+
+  const escapeHtml = (str) =>
+    String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+  const openBlogPost = (postId, updateHash = true) => {
+    const postIndex = blogPosts.findIndex((p) => p.id === String(postId));
+    if (postIndex === -1 || !blogModal || !blogModalBody) return;
+
+    const post = blogPosts[postIndex];
+    const prevPost = blogPosts[(postIndex - 1 + blogPosts.length) % blogPosts.length];
+    const nextPost = blogPosts[(postIndex + 1) % blogPosts.length];
+
+    const bodySectionsMarkup = post.sections
+      .map((sec) => {
+        const paras = (sec.paragraphs || []).map((p) => `<p>${p}</p>`).join('');
+        const bullets = sec.bullets
+          ? `<ul>${sec.bullets.map((b) => `<li>${b}</li>`).join('')}</ul>`
+          : '';
+        const code = sec.code
+          ? `<pre class="blog-code-block"><code>${escapeHtml(sec.code)}</code></pre>`
+          : '';
+        return `
+          <section>
+            <h3>${sec.heading}</h3>
+            ${paras}
+            ${code}
+            ${bullets}
+          </section>
+        `;
+      })
+      .join('');
+
+    const tagsMarkup = post.tags
+      .map((tag) => `<span class="blog-tag-item">${tag}</span>`)
+      .join('<span aria-hidden="true">/</span>');
+
+    blogModalBody.innerHTML = `
+      <button type="button" class="blog-article-back" id="blogBackBtn">
+        &larr; Back to All Articles
+      </button>
+
+      <div class="blog-article-meta-row blog-card-meta-line">
+        <span class="blog-meta-accent">${post.category}</span>
+        <span aria-hidden="true">&middot;</span>
+        <span>${post.date}</span>
+        <span aria-hidden="true">&middot;</span>
+        <span>${post.readTime}</span>
+        <span aria-hidden="true">&middot;</span>
+        <span>By ${post.author}</span>
+      </div>
+
+      <h2 id="blogModalTitle" class="blog-article-title">${post.title}</h2>
+      <p class="blog-article-lead">${post.lead}</p>
+
+      <div class="blog-modal-cover-wrap">
+        <img
+          src="${post.image}"
+          alt="${escapeHtml(post.imageAlt)}"
+          class="blog-modal-cover"
+          referrerpolicy="no-referrer"
+        />
+        <div class="blog-thumb-fallback" aria-hidden="true">
+          <span>${post.category}</span>
+        </div>
+      </div>
+
+      <div class="blog-article-body">
+        ${bodySectionsMarkup}
+      </div>
+
+      <div class="blog-card-tags" style="margin-top: 22px;">
+        ${tagsMarkup}
+      </div>
+
+      <div class="blog-article-nav">
+        <button type="button" class="blog-nav-btn" data-jump-post="${prevPost.id}">
+          &larr; Previous Article
+        </button>
+        <button type="button" class="blog-nav-btn" data-jump-post="${nextPost.id}">
+          Next Article &rarr;
+        </button>
+      </div>
+    `;
+
+    attachThumbFallback(blogModalBody.querySelector('.blog-modal-cover'));
+
+    blogModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    const modalCard = blogModal.querySelector('.blog-modal-card');
+    if (modalCard) modalCard.scrollTop = 0;
+
+    if (updateHash && window.location.hash !== `#blog/${post.slug}`) {
+      history.pushState(null, '', `#blog/${post.slug}`);
+    }
+
+    const backBtn = document.getElementById('blogBackBtn');
+    if (backBtn) {
+      backBtn.addEventListener('click', () => closeBlogModal(true));
+    }
+
+    blogModalBody.querySelectorAll('[data-jump-post]').forEach((jumpBtn) => {
+      jumpBtn.addEventListener('click', () => {
+        const nextId = jumpBtn.getAttribute('data-jump-post');
+        if (nextId) openBlogPost(nextId, true);
+      });
+    });
+  };
+
+  const closeBlogModal = (resetHash = true) => {
+    if (!blogModal || !blogModal.classList.contains('active')) return;
+    blogModal.classList.remove('active');
+    document.body.style.overflow = '';
+    if (resetHash && window.location.hash.startsWith('#blog/')) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  };
+
+  [...recentPostCards, ...blogCards].forEach((card) => {
+    card.addEventListener('click', (e) => {
+      const target = e.target;
+      if (target instanceof Element && target.closest('.blog-read-link')) {
+        e.preventDefault();
+      }
+      const postId = card.getAttribute('data-post-id');
+      if (postId) openBlogPost(postId, true);
+    });
+  });
+
+  if (blogModalClose) {
+    blogModalClose.addEventListener('click', () => closeBlogModal(true));
+  }
+
+  if (blogModal) {
+    blogModal.addEventListener('click', (e) => {
+      if (e.target === blogModal) closeBlogModal(true);
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeBlogModal(true);
+  });
+
+  const syncBlogFromHash = () => {
+    const hash = window.location.hash;
+    if (hash.startsWith('#blog/')) {
+      const slug = hash.slice('#blog/'.length);
+      const matched = blogPosts.find((p) => p.slug === slug);
+      if (matched) openBlogPost(matched.id, false);
+    } else {
+      closeBlogModal(false);
+    }
+  };
+
+  window.addEventListener('hashchange', syncBlogFromHash);
+  syncBlogFromHash();
 
   console.log('[DJC Developer] Portfolio initialized successfully with theme support.');
 });
