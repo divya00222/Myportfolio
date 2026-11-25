@@ -642,6 +642,106 @@ ul, ol {
 }
 
 /* --------------------------------------------------------------------------
+   Technical Skills Infinite Marquee
+   -------------------------------------------------------------------------- */
+.skills-marquee-section {
+  padding: 16px 0 24px;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-card);
+  transition: background-color var(--transition-theme),
+              border-color var(--transition-theme);
+}
+
+.skills-marquee-wrapper {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
+
+.skills-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: skillsMarqueeScroll 12s linear infinite;
+  will-change: transform;
+}
+
+.skills-marquee-wrapper:hover .skills-marquee-track {
+  animation-play-state: paused;
+}
+
+.skills-marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-right: 20px;
+  flex-shrink: 0;
+}
+
+.skill-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast),
+              border-color var(--transition-fast),
+              background-color var(--transition-theme),
+              box-shadow var(--transition-fast);
+}
+
+.skill-marquee-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+
+.skill-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.skill-icon-react { color: #0ea5e9; }
+.skill-icon-php { color: #6366f1; }
+.skill-icon-tailwind { color: #06b6d4; }
+.skill-icon-js { color: #eab308; }
+.skill-icon-html { color: #f97316; }
+.skill-icon-css { color: #3b82f6; }
+.skill-icon-mysql { color: #0284c7; }
+.skill-icon-git { color: #ef4444; }
+
+.skill-name {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  letter-spacing: -0.01em;
+}
+
+@keyframes skillsMarqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* --------------------------------------------------------------------------
    Services Section ("What I Do")
    -------------------------------------------------------------------------- */
 .services-section {
@@ -1728,6 +1828,54 @@ textarea.form-control {
   }
 }
 
+/* --------------------------------------------------------------------------
+   Scroll-Triggered Section Fade-In Animations
+   -------------------------------------------------------------------------- */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Subtle staggered reveal for cards inside observed sections */
+.fade-in-section:not(.is-visible) .service-card,
+.fade-in-section:not(.is-visible) .project-card,
+.fade-in-section:not(.is-visible) .stats-card {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fade-in-section.is-visible .service-card:nth-child(1),
+.fade-in-section.is-visible .project-card:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+.fade-in-section.is-visible .service-card:nth-child(2),
+.fade-in-section.is-visible .project-card:nth-child(2) {
+  transition-delay: 0.12s;
+}
+
+.fade-in-section.is-visible .service-card:nth-child(3),
+.fade-in-section.is-visible .project-card:nth-child(3) {
+  transition-delay: 0.19s;
+}
+
+.fade-in-section.is-visible .service-card:nth-child(4) {
+  transition-delay: 0.26s;
+}
+
+.fade-in-section.is-visible .service-card:hover,
+.fade-in-section.is-visible .project-card:hover {
+  transition-delay: 0s;
+}
+
 /* Accessible reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -1735,5 +1883,29 @@ textarea.form-control {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .fade-in-section,
+  .fade-in-section:not(.is-visible) .service-card,
+  .fade-in-section:not(.is-visible) .project-card,
+  .fade-in-section:not(.is-visible) .stats-card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .skills-marquee-track {
+    animation: none !important;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .skills-marquee-group {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  .skills-marquee-group[aria-hidden="true"] {
+    display: none;
   }
 }

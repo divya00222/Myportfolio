@@ -572,5 +572,52 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // =========================================================================
+  // 11. Scroll-Triggered Section Fade-In Animations (IntersectionObserver)
+  // =========================================================================
+  const initSectionFadeIn = () => {
+    const targetSections = document.querySelectorAll(
+      '#services, #portfolio, #about, #testimonials, #contact'
+    );
+
+    if (!targetSections.length) return;
+
+    const prefersReducedMotion =
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      targetSections.forEach((section) => {
+        section.classList.add('fade-in-section', 'is-visible');
+      });
+      return;
+    }
+
+    targetSections.forEach((section) => {
+      section.classList.add('fade-in-section');
+    });
+
+    const sectionObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px',
+      }
+    );
+
+    targetSections.forEach((section) => {
+      sectionObserver.observe(section);
+    });
+  };
+
+  initSectionFadeIn();
+
   console.log('[DJC Developer] Portfolio initialized successfully with theme support.');
 });
