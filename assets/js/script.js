@@ -696,7 +696,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   const initSectionFadeIn = () => {
     const targetSections = document.querySelectorAll(
-      '#services, #portfolio, #about, #experience, #testimonials, #contact'
+      '.hero-section, .services-section, .portfolio-section, .about-section, .experience-section, .testimonials-section, .contact-section'
     );
 
     if (!targetSections.length) return;
@@ -753,53 +753,7 @@ document.addEventListener('DOMContentLoaded', () => {
     link.setAttribute('href', buildWhatsAppUrl(DEFAULT_WHATSAPP_TEXT));
   });
 
-  // Sync Contact Form "Chat on WhatsApp" button with user's entered details
-  const whatsappFormBtn = document.getElementById('whatsappFormBtn');
-  if (whatsappFormBtn) {
-    const nameField = document.getElementById('userName');
-    const emailField = document.getElementById('userEmail');
-    const serviceField = document.getElementById('userService');
-    const messageField = document.getElementById('userMessage');
 
-    const updateWhatsAppFormHref = () => {
-      const name = nameField?.value.trim() || '';
-      const email = emailField?.value.trim() || '';
-      const serviceOption = serviceField?.options?.[serviceField.selectedIndex];
-      const serviceLabel =
-        serviceField?.value && serviceOption ? serviceOption.text : '';
-      const message = messageField?.value.trim() || '';
-
-      if (!name && !email && !serviceLabel && !message) {
-        whatsappFormBtn.setAttribute(
-          'href',
-          buildWhatsAppUrl(DEFAULT_WHATSAPP_TEXT)
-        );
-        return;
-      }
-
-      const lines = ["Hello Divya, I'd like to discuss a project:"];
-      if (name) lines.push(`Name: ${name}`);
-      if (email) lines.push(`Email: ${email}`);
-      if (serviceLabel) lines.push(`Service: ${serviceLabel}`);
-      if (message) lines.push(`Message: ${message}`);
-
-      whatsappFormBtn.setAttribute('href', buildWhatsAppUrl(lines.join('\n')));
-    };
-
-    [nameField, emailField, serviceField, messageField].forEach((field) => {
-      if (field) {
-        field.addEventListener('input', updateWhatsAppFormHref);
-        field.addEventListener('change', updateWhatsAppFormHref);
-      }
-    });
-
-    whatsappFormBtn.addEventListener('click', () => {
-      updateWhatsAppFormHref();
-      showToast('Opening WhatsApp chat with Divya...');
-    });
-
-    updateWhatsAppFormHref();
-  }
 
   // =========================================================================
   // 13. Blog Filtering, Recent Posts & Full Article Reader View
@@ -1277,6 +1231,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('hashchange', syncBlogFromHash);
   syncBlogFromHash();
+
+  // Auto-typing effect for hero subtitle
+  const initAutoTyping = () => {
+    const subtitleEl = document.querySelector('.hero-subtitle');
+    if (!subtitleEl) return;
+
+    const phrases = [
+      "Full-Stack Web Developer",
+      "Freelance Web Designer",
+      "PHP & MySQL Specialist",
+      "Frontend UI/UX Creator",
+      "Building Digital Solutions in Nepal"
+    ];
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+
+    const type = () => {
+      const currentPhrase = phrases[phraseIndex];
+      
+      if (isDeleting) {
+        subtitleEl.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+        typingSpeed = 50;
+      } else {
+        subtitleEl.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+        typingSpeed = 100;
+      }
+
+      if (!isDeleting && charIndex === currentPhrase.length) {
+        typingSpeed = 2000; // Pause at end of phrase
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        typingSpeed = 500; // Pause before starting new phrase
+      }
+
+      setTimeout(type, typingSpeed);
+    };
+
+    setTimeout(type, 1000);
+  };
+
+  initAutoTyping();
 
   console.log('[DJC Developer] Portfolio initialized successfully with theme support.');
 });

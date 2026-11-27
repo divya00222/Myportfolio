@@ -2890,9 +2890,21 @@ textarea.form-control {
 .fade-in-section:not(.is-visible) .stats-card,
 .fade-in-section:not(.is-visible) .experience-item {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(25px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-in-section:not(.is-visible) .experience-marker {
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+              opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+
+.fade-in-section.is-visible .experience-marker {
+  transform: scale(1);
+  opacity: 1;
 }
 
 .fade-in-section.is-visible .service-card:nth-child(1),
@@ -2961,3 +2973,18 @@ textarea.form-control {
     display: none;
   }
 }
+
+/* Typewriter cursor effect */
+.hero-subtitle::after {
+  content: '|';
+  display: inline-block;
+  margin-left: 2px;
+  animation: cursorBlink 0.8s infinite;
+  color: var(--primary);
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
